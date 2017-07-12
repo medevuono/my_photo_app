@@ -1,0 +1,16 @@
+
+<h1>Create New Post</h1>
+
+<% if @post.errors.full_messages.any? %>
+  <% @post.errors.full_messages.each do |message|%>
+  <p><strong><em> <%= message%> </em></strong></p>
+  <% end %>
+<% end %>  
+
+<%= form_for @post do |f| %>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, size: "40x10" %>
+  </p>
+  <%= f.submit %>
+<% end %>
