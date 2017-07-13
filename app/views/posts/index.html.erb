@@ -8,9 +8,13 @@
 
 <div>
 <% @posts.each do |post|%>
+<div>
   <%= time_ago_in_words post.created_at %>
 <p>
+  <%= post.user.username %>
+  <%= image_tag post.photo.url() %><br>
   <%= post.description %>
 </p>
 <hr>
+</div>
 <% end %>

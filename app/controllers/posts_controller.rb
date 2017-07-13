@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = 1
     if @post.save
       redirect_to posts_path, notice: 'The post have been created'
     else
@@ -18,9 +19,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:description)
+    params.require(:post).permit(:description, :photo)
   end
   
 end
-#rails g peperclip post photo <-- cuando baje e instale lo de paperclip
-

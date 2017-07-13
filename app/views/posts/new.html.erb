@@ -2,6 +2,7 @@
 <h1>Create New Post</h1>
 
 <% if @post.errors.full_messages.any? %>
+<p><%= @post.inspect %></p>
   <% @post.errors.full_messages.each do |message|%>
   <p><strong><em> <%= message%> </em></strong></p>
   <% end %>
@@ -11,6 +12,10 @@
   <p>
     <%= f.label :description %><br>
     <%= f.text_area :description, size: "40x10" %>
+  </p>
+    <p>
+    <%= f.label :photo %><br>
+    <%= f.file_field :photo %>
   </p>
   <%= f.submit %>
 <% end %>
