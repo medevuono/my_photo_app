@@ -16,3 +16,13 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  background-color: #FAFAFA;
+  padding-top: 100px;
+}
+
+.navbar-default {
+  background-color: white;
+  padding: 16px;
+}

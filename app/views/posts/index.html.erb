@@ -1,20 +1,18 @@
-<h1>Posts</h1>
 
-<% flash.each do |type, message| %>
-  <p><strong><em><%= message %></em></strong></p>
-<% end %>
-
-<p><%= link_to "Create", posts_new_path%></p>
-
-<div>
 <% @posts.each do |post|%>
-<div>
-  <%= time_ago_in_words post.created_at %>
-<p>
-  <%= post.user.username %>
-  <%= image_tag post.photo.url() %><br>
-  <%= post.description %>
-</p>
-<hr>
+<div class="post">
+  <div class="post__header">
+    <strong><%= post.user.username %></strong>
+  </div>  
+
+  <div class="post__body">
+    <%= image_tag post.photo.url %><br>
+    <div class="post__description">
+      <strong><%= post.user.username %></strong> <%= post.description %>
+  </div>
+
+  <div class="post__footer">
+    <%= time_ago_in_words post.created_at %>
+  </div>
 </div>
 <% end %>
