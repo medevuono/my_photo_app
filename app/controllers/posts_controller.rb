@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create] #el usuario puede usar new, create si esta autenticado
+
   def index
     @posts = Post.order(created_at: :desc).limit(10)
   end
@@ -8,8 +10,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user_id = 1
+    @post = current_user.posts.new(post_params)
+    #@post = Post.new(post_params)
+    #@post.user_id = 1
     if @post.save
       redirect_to posts_path, notice: 'The post have been created'
     else

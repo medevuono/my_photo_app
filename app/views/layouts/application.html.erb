@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myphotoapp</title>
+    <title>Photogram</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,7 +12,6 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <span class="sr-only">Toggle navigation</span>
@@ -20,22 +19,36 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <strong><%= link_to "Photo&Share", root_path, class: "navbar-brand" %></strong>
+            <strong><%= link_to "Photogram", root_path, class: "navbar-brand" %></strong>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li>
-              <%= link_to "Publish", posts_new_path %>
+              <li class="<%= 'active' if current_page?(posts_new_path) %>">
+                <%= link_to "Publish", posts_new_path %>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#">Explore</a></li>
               <li><a href="#">Favorites</a></li>
-              <li><a href="#">Login</a></li>
+              <% if user_signed_in? %>
+                <li class="<%= 'active' if current_page?(edit_user_registration_path) %>">
+                  <%= link_to current_user.username, edit_user_registration_path %>
+                </li>
+                <li>
+                  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+                </li>
+              <% else %>
+                <li class="<%= 'active' if current_page?(new_user_registration_path) %>">
+                  <%= link_to "Sign Up", new_user_registration_path %>
+                </li>
+                <li class="<%= 'active' if current_page?( new_user_session_path) %>">
+                  <%= link_to "Sign In", new_user_session_path %>
+                </li>
+              <% end %>
+
             </ul>
           </div>
-
         </div>
       </div>
     </nav>
@@ -49,6 +62,7 @@
             <%= message %>
           </div>
         <% end %>
+        
 
         <%= yield %>
       </div>
