@@ -1,0 +1,23 @@
+
+<div class="post">
+  <div class="post__header">
+    <strong><%= post.user.username %></strong>
+  </div>  
+
+  <div class="post__body">
+    <% if detail %>
+      <%= link_to post do%>
+        <%= image_tag post.photo.url %>
+      <% end %>
+    <% else %>
+       <%= image_tag post.photo.url %>
+    <% end %>
+    <div class="post__description">
+      <strong><%= post.user.username %></strong> <%= post.description %>
+    </div>
+  </div>
+
+  <div class="post__footer">
+    <%= time_ago_in_words post.created_at %>
+  </div>
+</div>

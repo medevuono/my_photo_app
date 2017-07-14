@@ -20,6 +20,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    begin
+      @post = Post.find(params[:id])
+    rescue => e
+      redirect_to posts_path, flash: { alert: "The post has not been found"}
+    end
+  end
+
   private
   def post_params
     params.require(:post).permit(:description, :photo)

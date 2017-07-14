@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'posts/', to: 'posts#index'
-
-  get 'posts/new'
-
-  post 'posts/', to: 'posts#create'
+  
+  get  'posts/',    to: 'posts#index', as: :posts
+  post 'posts/',    to: 'posts#create'
+  get  'posts/new', to: 'posts#new',   as: :new_post
+  get  'posts/:id', to: 'posts#show',  as: :post
 
   root 'posts#index'
 
