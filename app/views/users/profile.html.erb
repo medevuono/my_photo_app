@@ -3,7 +3,7 @@
 <div class="row">
   <% @posts.each do |post| %>
     <div class="col-md-6">
-      <%= render 'posts/post', post: post,linkable: true, profilable: false %>
+      <%= render 'posts/post', post: post, profilable: false %>
     </div>
   <% end %>
 </div>

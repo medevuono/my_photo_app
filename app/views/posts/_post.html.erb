@@ -1,3 +1,5 @@
+<% profilable = true if local_assigns[:profilable].nil? %>
+<% linkable = true if local_assigns[:linkable].nil? %>
 
 <div class="post">
   <% if profilable %>
@@ -16,7 +18,7 @@
     <% else %>
        <%= image_tag post.photo.url %>
     <% end %>
-    
+
     <div class="post__description">
       <% if profilable %>
        <%= link_to profile_path(post.user.username) do %>
