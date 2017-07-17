@@ -1,19 +1,31 @@
+<% profilable = true if local_assigns[:profilable].nil? %>
+<% linkable = true if local_assigns[:linkable].nil? %>
 
 <div class="post">
+  <% if profilable %>
   <div class="post__header">
-    <strong><%= post.user.username %></strong>
-  </div>  
+    <%= link_to profile_path(post.user.username) do %>
+      <strong><%= post.user.username %></strong>
+    <% end %>
+  </div>
+  <% end %>
 
   <div class="post__body">
-    <% if detail %>
+    <% if linkable %>
       <%= link_to post do%>
         <%= image_tag post.photo.url %>
       <% end %>
     <% else %>
        <%= image_tag post.photo.url %>
     <% end %>
+
     <div class="post__description">
-      <strong><%= post.user.username %></strong> <%= post.description %>
+      <% if profilable %>
+       <%= link_to profile_path(post.user.username) do %>
+           <strong><%= post.user.username %></strong>
+       <% end %>
+     <% end %>
+     <%= post.description %>
     </div>
   </div>
 
