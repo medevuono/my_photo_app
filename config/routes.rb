@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'comments/create'
+
   get  '@:username', to: 'users#profile', as: :profile
   
   devise_for :users
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
   get  'posts/:id', to: 'posts#show',  as: :post
   
 #  delete 'posts/:id', to: 'posts#destroy'
+
+  post 'posts/:id/comments', to: 'comments#create', as: :comments
 
   root 'posts#index'
 

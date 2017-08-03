@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, # estos son los comportamientos de divice que se estan usando
          :confirmable
-         has_many :posts
-  
+  has_many :posts
+  has_many :comments
+
   validates :username, presence: true, uniqueness: true
   validates :name, presence: true
   validates :lastname, presence: true
